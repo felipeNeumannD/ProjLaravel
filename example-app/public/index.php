@@ -7,3 +7,5 @@ echo "aas";
 echo "TESTE";
 
 echo "aaaaaaaaaaaa";
+
+echo "HELLO WORLD";
