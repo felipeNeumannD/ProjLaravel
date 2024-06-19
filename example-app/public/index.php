@@ -4,4 +4,4 @@ echo"Oi";
 
 echo "aas";
 
-echo "TESTE"
+echo "TESTE";
