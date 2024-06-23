@@ -10,3 +10,4 @@ Route::get('/hello', function () {
 });
 
 Route::view('/teste', 'teste', ['name'=>'GTA']);    
+
