@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Pessoa;
 
 
 //Route::view('/teste', 'teste');
@@ -9,5 +10,7 @@ Route::get('/hello', function () {
     return 'Hello, World!';
 });
 
-Route::view('/teste', 'teste', ['name'=>'GTA']);    
+$pessoa = Pessoa::all();
+
+Route::view('/teste', 'teste', ['pessoa' => $pessoa]);    
 

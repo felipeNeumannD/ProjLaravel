@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>Deu certo</h1>
-    <p>{{$name}}</p>
+    @foreach ($pessoa as $pessoa2)
+        <p>{{$pessoa2->nome}}</p>
+    @endforeach
+    
 </body>
 </html>
