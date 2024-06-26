@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Deu certo</h1>
+@extends('Layout.main')
+
+@section('title','Teste')
+
+
+@section('content')
+<h1>Deu certo</h1>
     @foreach ($pessoa as $pessoa2)
         <p>{{$pessoa2->nome}}</p>
     @endforeach
-    
-</body>
-</html>
+@endsection
+
+
+
