@@ -35,6 +35,12 @@
     <input type="radio" name="funcao" value="funcionario">
 </div>
 
+<div>
+    <label>Função:</label>
+    <input type="radio" name="funcao" value="aluno">
+    <input type="radio" name="funcao" value="funcionario">
+</div>
+
 @if ()
 
 @endif
