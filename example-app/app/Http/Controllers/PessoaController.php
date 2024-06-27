@@ -22,6 +22,10 @@ class PessoaController extends Controller
 
         $pessoa->save();
 
-        return redirect('/');
+
+        $id = $pessoa->id;
+
+
+        return redirect('/home');
     }
 }
