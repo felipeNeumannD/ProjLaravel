@@ -19,5 +19,9 @@ class PessoaController extends Controller
         $pessoa->cpf = $request->input("cpf");
         $pessoa->telefone = $request->input("telefone");
         $pessoa->email = $request->input("email");
+
+        $pessoa->save();
+
+        return redirect('/');
     }
 }

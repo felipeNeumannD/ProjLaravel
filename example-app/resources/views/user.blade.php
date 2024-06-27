@@ -5,6 +5,7 @@
 @section('content')
 <h1>Configurações do usuário</h1>
 <form action="/pessoaCad" method="POST">
+    @csrf
     <div>
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome">
@@ -25,10 +26,15 @@
     </div>
 
     <div>
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf">
+    </div>
+
+    <div>
         <label for="telefone">Telefone:</label>
         <input type="tel" id="telefone" name="telefone">
     </div>
-    
+
     <div>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email">
