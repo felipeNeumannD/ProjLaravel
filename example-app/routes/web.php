@@ -18,5 +18,6 @@ Use App\Http\Controllers\PessoaController;
 
 
 Route::get("/user", [PessoaController::class,"index"]);
-Route::get("/events/create", [PessoaController::class,"create"]);
+Route::get("/pessoa/create", [PessoaController::class,"create"]);
+Route::post("/pessoaCad", [PessoaController::class,'store']);
 
