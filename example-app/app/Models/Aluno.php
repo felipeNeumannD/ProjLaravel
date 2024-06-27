@@ -13,16 +13,11 @@ class Aluno extends Pessoa
     public $timestamps = false;
 
     protected $fillable = [
-        'data_inicio', 'forma_pagamento', 'id_plano', 'id_pessoa'
+        'data_inicio', 'descricao_plano', 'valor_plano', 'forma_pagamento', 'id_pessoa'
     ];
 
     public function relacionaPessoa()
     {
         return $this->belongsTo(Pessoa::class, 'id_pessoa');
-    }
-
-    public function relacionaPlano()
-    {
-        return $this->belongsTo(Plano::class, 'id_plano');
     }
 }

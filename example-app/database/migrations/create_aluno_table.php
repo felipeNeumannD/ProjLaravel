@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('aluno', function (Blueprint $table) {
             $table->id();
             $table->date('data_inicio');
-            $table->string('forma_pagamento');
-            $table->unsignedBigInteger('id_plano');
+            $table->string('descricao_plano');
+            $table->unsignedBigInteger('valor_plano');
+            $table->unsignedBigInteger('forma_pagamento');
             $table->unsignedBigInteger('id_pessoa');
             $table->foreign('id_pessoa')->references('id')->on('pessoa')->onDelete('cascade');
             $table->foreign('id_plano')->references('id')->on('plano')->onDelete('cascade');
