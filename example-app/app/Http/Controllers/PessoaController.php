@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use App\Models\Funcionario;
 use App\Models\Pessoa;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class PessoaController extends Controller
 {
@@ -18,18 +20,21 @@ class PessoaController extends Controller
     public function store(Request $request){
 
 
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'nascimento' => 'required|date',
-            'sexo' => 'required|string|max:30',
-            'cpf' => 'required|string|max:14|unique:pessoa,cpf',
-            'telefone' => 'required|string|max:20',
-            'email' => 'required|string|email|max:255|unique:pessoa,email',
-            'funcao' => 'required|string',
-            'valor' => 'required_if:funcao,aluno|numeric',
-            'descricao_plano' => 'required_if:funcao,aluno|string|max:255',
-            'forma_pagamento' => 'required_if:funcao,aluno|string',
-        ]);
+        // $request->validate([
+        //     'nome' => 'required|string|max:255',
+        //     'nascimento' => 'required|date',
+        //     'sexo' => 'required|string|max:30',
+        //     'cpf' => 'required|string|max:14|unique:pessoa,cpf',
+        //     'telefone' => 'required|string|max:20',
+        //     'email' => 'required|string|email|max:255|unique:pessoa,email',
+        //     'funcao' => 'required|string',
+        //     'valor' => 'required_if:funcao,aluno|numeric',
+        //     'descricao_plano' => 'required_if:funcao,aluno|string|max:255',
+        //     'forma_pagamento' => 'required_if:funcao,aluno|string',
+        //     'salario' => 'required_if:funcao,funcionario|numeric',
+        //     'setor' => 'required_if:funcao,funcionario|string|max:255',
+        //     'funcaoFuncionario' => 'required_if:funcao,funcionario|string|max:255',
+        // ]);
 
 
 
@@ -49,18 +54,25 @@ class PessoaController extends Controller
 
         if($request->input("funcao") == 'aluno'){
             $aluno = new Aluno();
-            $aluno->data_inicio = Carbon::today();
+            $aluno->data_inicio = Carbon::today()->toDateString();
             $aluno->valor_plano = $request->input('valor');
             $aluno->descricao_plano = $request->input('descricao_plano');
             $aluno->forma_pagamento = $request->input('forma_pagamento');
             $aluno->id_pessoa = $idPessoa;
             
-            $aluno->save();  
-        } else{
-            
-        }
-        
+            $aluno->save();
+              
+        } else if($request->input("funcao") == 'funcionario'){
+            // Log::info('Esta é uma mensagem de informação.');
+            $funcionario = new Funcionario();
+            $funcionario->data_contratacao = Carbon::today()->toDateString();
+            $funcionario->salario = $request->input('salario');
+            $funcionario->setor = $request->input('setor');
+            $funcionario->funcao = $request->input('funcaoFuncionario');
+            $funcionario->id_pessoa = $idPessoa;
 
+            $funcionario->save();
+        }
 
 
     }

@@ -21,7 +21,6 @@ Route::view('/teste', 'teste');
 
 
 Route::get("/user", [PessoaController::class,"index"])->name("user");
-Route::get("/pessoa/create", [PessoaController::class,"create"]);
 Route::post("/pessoaCad", [PessoaController::class,'store']);
 
 
