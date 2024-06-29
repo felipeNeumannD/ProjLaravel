@@ -68,6 +68,12 @@
         <input type="radio" name="forma_pagamento" value="credito"> Crédito
         <input type="radio" name="forma_pagamento" value="debito"> Débito
         <input type="radio" name="forma_pagamento" value="dinheiro"> Dinheiro
+        <br>
+        <label>Plano</label>
+        <input type="text" name="descricao_plano">
+        <br>
+        <label>valor</label>
+        <input type="number" name="valor">
     </div>
 
     <div>

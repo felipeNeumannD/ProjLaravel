@@ -24,6 +24,4 @@ Route::post("/pessoaCad", [PessoaController::class,'store']);
 
 
 
-// Defina a rota 'home' como a raiz do site
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
