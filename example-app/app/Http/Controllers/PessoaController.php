@@ -45,10 +45,9 @@ class PessoaController extends Controller
 
         $pessoa->save();
 
-        $idPessoa = 3;
+        $idPessoa = $pessoa->id;
 
         if($request->input("funcao") == 'aluno'){
-            \Log::info('Função é aluno, criando registro de aluno.');
             $aluno = new Aluno();
             $aluno->data_inicio = Carbon::today();
             $aluno->valor_plano = $request->input('valor');
@@ -58,12 +57,11 @@ class PessoaController extends Controller
             
             $aluno->save();  
         } else{
-            \Log::info('Função não é');
+            
         }
         
 
 
 
-        return redirect('/');
     }
 }

@@ -68,6 +68,12 @@
         </div>
 
     <div id="alunoFields" style="display: none;">
+
+        <label class="form-label">Plano:</label>
+        <input type="text" class="form-control" name="descricao_plano">
+        <label class="form-label">Valor:</label>
+        <input type="number" class="form-control" name="valor">
+        <br>
         <label>Forma de Pagamento:</label>
         <input type="radio" name="forma_pagamento" value="pix"> Pix
         <input type="radio" name="forma_pagamento" value="credito"> Crédito
