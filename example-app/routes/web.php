@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 Use App\Http\Controllers\PessoaController;
-use App\Http\Controllers\HomeController;
 
 
 Route::get("/teste", function(){
@@ -22,6 +21,8 @@ Route::view('/teste', 'teste');
 
 Route::get("/user", [PessoaController::class,"index"])->name("user");
 Route::post("/pessoaCad", [PessoaController::class,'store']);
+Route::get("/show", [PessoaController::class, 'index2'])->name("show");
+Route::get('/show/search', [PessoaController::class, 'search'])->name('show.search');
 
 
 

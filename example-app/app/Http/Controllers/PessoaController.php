@@ -17,28 +17,17 @@ class PessoaController extends Controller
         return view("user");
     }
 
+    public function index2(){
+        Log::info('Método index2 foi chamado.');
+        $pessoas = Pessoa::all();
+        return view("modifica", compact('pessoas'));
+    }
+
+    public function search(){
+        
+    }
+
     public function store(Request $request){
-
-
-        // $request->validate([
-        //     'nome' => 'required|string|max:255',
-        //     'nascimento' => 'required|date',
-        //     'sexo' => 'required|string|max:30',
-        //     'cpf' => 'required|string|max:14|unique:pessoa,cpf',
-        //     'telefone' => 'required|string|max:20',
-        //     'email' => 'required|string|email|max:255|unique:pessoa,email',
-        //     'funcao' => 'required|string',
-        //     'valor' => 'required_if:funcao,aluno|numeric',
-        //     'descricao_plano' => 'required_if:funcao,aluno|string|max:255',
-        //     'forma_pagamento' => 'required_if:funcao,aluno|string',
-        //     'salario' => 'required_if:funcao,funcionario|numeric',
-        //     'setor' => 'required_if:funcao,funcionario|string|max:255',
-        //     'funcaoFuncionario' => 'required_if:funcao,funcionario|string|max:255',
-        // ]);
-
-
-
-
 
         $pessoa = new Pessoa();
         $pessoa->nome = $request->input("nome");
