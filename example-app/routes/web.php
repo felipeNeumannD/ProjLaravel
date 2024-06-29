@@ -6,11 +6,13 @@ Use App\Http\Controllers\PessoaController;
 use App\Http\Controllers\HomeController;
 
 
-//Route::view('/teste', 'teste');
+Route::get("/teste", function(){
+    return view("teste");
+});
 
-// Route::get('/hello', function () {
-//     return 'Hello, World!';
-// });
+Route::get('/user', function () {
+    return view('user');
+});
 
 
 

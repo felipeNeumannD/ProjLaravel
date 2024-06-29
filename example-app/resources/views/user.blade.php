@@ -3,79 +3,95 @@
 @section('title', 'Cadastro Usuário')
 
 @section('content')
-<h1>Configurações do usuário</h1>
-<form action="/pessoaCad" method="POST">
-    @csrf
-    <div>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome">
-    </div>
+<div class="container mt-5">
+    <h1 class="mb-4">Informações do usuário</h1>
+    <form action="/pessoaCad" method="POST">
+        @csrf
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" class="form-control" id="nome" name="nome">
+        </div>
 
-    <div>
-        <label for="nascimento">Data de Nascimento:</label>
-        <input type="date" id="nascimento" name="nascimento">
-    </div>
+        <div class="mb-3">
+            <label for="nascimento" class="form-label">Data de Nascimento:</label>
+            <input type="date" class="form-control" id="nascimento" name="nascimento">
+        </div>
 
-    <div>
-        <label>Sexo:</label>
-        <input type="radio" id="masculino" name="sexo" value="Masculino">
-        <label for="masculino">Masculino</label>
+        <div class="mb-3">
+            <label class="form-label">Sexo:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="masculino" name="sexo" value="Masculino">
+                <label class="form-check-label" for="masculino">Masculino</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="feminino" name="sexo" value="Feminino">
+                <label class="form-check-label" for="feminino">Feminino</label>
+            </div>
+        </div>
 
-        <input type="radio" id="feminino" name="sexo" value="Feminino">
-        <label for="feminino">Feminino</label>
-    </div>
+        <div class="mb-3">
+            <label for="cpf" class="form-label">CPF:</label>
+            <input type="text" class="form-control" id="cpf" name="cpf">
+        </div>
 
-    <div>
-        <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" name="cpf">
-    </div>
+        <div class="mb-3">
+            <label for="telefone" class="form-label">Telefone:</label>
+            <input type="tel" class="form-control" id="telefone" name="telefone">
+        </div>
 
-    <div>
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone">
-    </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
 
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-    </div>
+        <div class="mb-3">
+            <label class="form-label">Função:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="alunoRadio" name="funcao" value="aluno">
+                <label class="form-check-label" for="alunoRadio">Aluno</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="funcionarioRadio" name="funcao" value="funcionario">
+                <label class="form-check-label" for="funcionarioRadio">Funcionário</label>
+            </div>
+        </div>
 
-    
+        <div id="funcionarioFields" class="mb-3" style="display: none;">
+            <label class="form-label">Salário:</label>
+            <input type="number" class="form-control" name="salario">
 
-    <div>
-        <label>Função:</label>
-        <input type="radio" id="alunoRadio" name="funcao" value="aluno">
-        <label for="alunoRadio">Aluno</label>
+            <label class="form-label">Setor:</label>
+            <input type="text" class="form-control" name="setor">
 
-        <input type="radio" id="funcionarioRadio" name="funcao" value="funcionario">
-        <label for="funcionarioRadio">Funcionário</label>
-    </div>
+            <label class="form-label">Função:</label>
+            <input type="text" class="form-control" name="funcaoFuncionario">
+        </div>
 
-    <div id="funcionarioFields" style="display: none;">
-        <label>Salário:</label>
-        <input type="number" name="salario">
+        <div id="alunoFields" class="mb-3" style="display: none;">
+            <label class="form-label">Forma de Pagamento:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="forma_pagamento" value="pix">
+                <label class="form-check-label" for="pix">Pix</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="forma_pagamento" value="credito">
+                <label class="form-check-label" for="credito">Crédito</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="forma_pagamento" value="debito">
+                <label class="form-check-label" for="debito">Débito</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="forma_pagamento" value="dinheiro">
+                <label class="form-check-label" for="dinheiro">Dinheiro</label>
+            </div>
+        </div>
 
-        <label>Setor:</label>
-        <input type="text" name="setor">
+        <div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </form>
+</div>
 
-        <label>Função:</label>
-        <input type="text" name="funcaoFuncionario">
-    </div>
-
-    <div id="alunoFields" style="display: none;">
-        <label>Forma de Pagamento:</label>
-        <input type="radio" name="forma_pagamento" value="pix"> Pix
-        <input type="radio" name="forma_pagamento" value="credito"> Crédito
-        <input type="radio" name="forma_pagamento" value="debito"> Débito
-        <input type="radio" name="forma_pagamento" value="dinheiro"> Dinheiro
-    </div>
-
-    <div>
-        <input type="submit" value="Enviar">
-    </div>
-</form>
-
-
-    <script src="{{asset('js/scriptUser.js')}}"></script>
-
+<script src="{{ asset('js/scriptUser.js') }}"></script>
 @endsection
