@@ -16,19 +16,27 @@ class PessoaController extends Controller
 
     public function index2(){
         $pessoas = Pessoa::all();
-        return view("modifica", compact('pessoas'));
+        return view("modificaPessoa", compact('pessoas'));
     }
 
     public function index3(Request $request){
         $id = $request->input("idModificar");
         $pessoa = Pessoa::findOrFail($id);
-        return view("altera", compact('pessoa'));
+        $aluno = Aluno::where('id_pessoa','%'.$id.'%')->get();
+        $funcionario = Funcionario::where('id_pessoa','%'.$id.'%')->get();
+
+        return view("alteraPessoa", compact('pessoa','aluno','funcionario'));
+        
+    }
+
+    public function activitySearch(){
+
     }
 
     public function search(Request $request){
         $pesquisa = $request->input("procura_user");
         $pessoas = Pessoa::where('nome', 'like', '%'.$pesquisa.'%')->get();
-        return view("modifica", compact('pessoas'));
+        return view("modificaPessoa", compact('pessoas'));
     }
 
     public function delete(Request $request){
