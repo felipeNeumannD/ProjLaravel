@@ -1,0 +1,11 @@
+.table-custom-bordered {
+    border: 2px solid black; 
+}
+.table-custom-bordered th,
+.table-custom-bordered td {
+    border: 2px solid black; 
+}
+
+.th, td{
+    text-align: center;
+}

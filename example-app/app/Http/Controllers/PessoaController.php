@@ -7,24 +7,33 @@ use App\Models\Funcionario;
 use App\Models\Pessoa;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 
 class PessoaController extends Controller
 {
-
-    
     public function index(){
         return view("user");
     }
 
     public function index2(){
-        Log::info('Método index2 foi chamado.');
         $pessoas = Pessoa::all();
         return view("modifica", compact('pessoas'));
     }
 
-    public function search(){
-        
+    public function index3(Request $request){
+        $pesquisa = $request->input("procura_user");
+    }
+
+    public function search(Request $request){
+        $pesquisa = $request->input("procura_user");
+        $pessoas = Pessoa::where('nome', 'like', '%'.$pesquisa.'%')->get();
+        return view("modifica", compact('pessoas'));
+    }
+
+    public function delete(Request $request){
+        $id = $request->input("guardado");
+        $pessoa = Pessoa::findOrFail($id);
+        $pessoa->delete();
+        return redirect()->route('show');
     }
 
     public function store(Request $request){
@@ -52,7 +61,6 @@ class PessoaController extends Controller
             $aluno->save();
               
         } else if($request->input("funcao") == 'funcionario'){
-            // Log::info('Esta é uma mensagem de informação.');
             $funcionario = new Funcionario();
             $funcionario->data_contratacao = Carbon::today()->toDateString();
             $funcionario->salario = $request->input('salario');

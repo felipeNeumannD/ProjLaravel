@@ -22,7 +22,10 @@ Route::view('/teste', 'teste');
 Route::get("/user", [PessoaController::class,"index"])->name("user");
 Route::post("/pessoaCad", [PessoaController::class,'store']);
 Route::get("/show", [PessoaController::class, 'index2'])->name("show");
-Route::get('/show/search', [PessoaController::class, 'search'])->name('show.search');
+Route::get('/search', [PessoaController::class, 'search'])->name('search');
+Route::delete('/delete', [PessoaController::class, 'delete'])->name('delete');
+Route::get("/show/modify", [PessoaController::class, 'index3'])->name("modify");
+
 
 
 
