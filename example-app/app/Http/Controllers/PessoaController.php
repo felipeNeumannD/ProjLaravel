@@ -20,7 +20,9 @@ class PessoaController extends Controller
     }
 
     public function index3(Request $request){
-        $pesquisa = $request->input("procura_user");
+        $id = $request->input("idModificar");
+        $pessoa = Pessoa::findOrFail($id);
+        return view("altera", compact('pessoa'));
     }
 
     public function search(Request $request){

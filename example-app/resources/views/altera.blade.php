@@ -7,12 +7,12 @@
     @csrf
     <div class="mb-3">
         <label for="nome" class="form-label">Nome:</label>
-        <input type="text" class="form-control" id="nome" name="nome">
+        <input type="text" class="form-control" id="nome" name="nome" value="{{$pessoa->nome}}">
     </div>
 
     <div class="mb-3">
         <label for="nascimento" class="form-label">Data de Nascimento:</label>
-        <input type="date" class="form-control" id="nascimento" name="nascimento">
+        <input type="date" class="form-control" id="nascimento" name="nascimento" value="{{$pessoa->nascimento_data}}">
     </div>
 
     <div class="mb-3">
@@ -29,17 +29,17 @@
 
     <div class="mb-3">
         <label for="cpf" class="form-label">CPF:</label>
-        <input type="text" class="form-control" id="cpf" name="cpf">
+        <input type="text" class="form-control" id="cpf" name="cpf" value="{{$pessoa->cpf}}">
     </div>
 
     <div class="mb-3">
         <label for="telefone" class="form-label">Telefone:</label>
-        <input type="tel" class="form-control" id="telefone" name="telefone">
+        <input type="tel" class="form-control" id="telefone" name="telefone" value="{{$pessoa->telefone}}">
     </div>
 
     <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
-        <input type="email" class="form-control" id="email" name="email">
+        <input type="email" class="form-control" id="email" name="email" value="{{$pessoa->email}}">
     </div>
 
     <div class="mb-3">
