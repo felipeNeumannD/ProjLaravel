@@ -27,6 +27,7 @@ Route::get("/show", [PessoaController::class, 'index2'])->name("show");
 Route::get('/search', [PessoaController::class, 'search'])->name('search');
 Route::delete('/delete', [PessoaController::class, 'delete'])->name('delete');
 Route::get("/show/modify", [PessoaController::class, 'index3'])->name("modify");
+Route::put('/update', [PessoaController::class, 'update'])->name('update');
 
 
 Route::get("/equip", [EquipamentoController::class,"index"])->name("index"); //CADASTRO EQUIPAMENTOS

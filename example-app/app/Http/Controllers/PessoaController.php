@@ -19,14 +19,53 @@ class PessoaController extends Controller
         return view("modificaPessoa", compact('pessoas'));
     }
 
+    public function update(Request $request){
+        // $pessoa = Pessoa::findOrFail($id);
+        
+        // $pessoa->nome = $request->input("nome");
+        // $pessoa->nascimento_data = $request->input("nascimento");
+        // $pessoa->sexo = $request->input("sexo");
+        // $pessoa->cpf = $request->input("cpf");
+        // $pessoa->telefone = $request->input("telefone");
+        // $pessoa->email = $request->input("email");
+        // $pessoa->save();
+
+        // if($request->input("funcao") == 'aluno'){
+        //     $aluno = new Aluno();
+        //     $aluno->data_inicio = Carbon::today()->toDateString();
+        //     $aluno->valor_plano = $request->input('valor');
+        //     $aluno->descricao_plano = $request->input('descricao_plano');
+        //     $aluno->forma_pagamento = $request->input('forma_pagamento');
+        //     $aluno->id_pessoa = $idPessoa;
+            
+        //     $aluno->save();
+              
+        // } else if($request->input("funcao") == 'funcionario'){
+        //     $funcionario = Funcionario::where('id_pessoa', $id)->first();
+        //     $funcionario->data_contratacao = Carbon::today()->toDateString();
+        //     $funcionario->salario = $request->input('salario');
+        //     $funcionario->setor = $request->input('setor');
+        //     $funcionario->funcao = $request->input('funcaoFuncionario');
+            
+        //     $funcionario->save();
+        // }
+
+    }
+
     public function index3(Request $request){
         $id = $request->input("idModificar");
         $pessoa = Pessoa::findOrFail($id);
-        $aluno = Aluno::where('id_pessoa','%'.$id.'%')->get();
-        $funcionario = Funcionario::where('id_pessoa','%'.$id.'%')->get();
+        $aluno = Aluno::where('id_pessoa', $id)->first();
+        $funcionario = Funcionario::where('id_pessoa', $id)->first();
+
+        if (!$aluno) {
+            $aluno = new Aluno();
+        }
+        if (!$funcionario) {
+            $funcionario = new Funcionario(); 
+        }
 
         return view("alteraPessoa", compact('pessoa','aluno','funcionario'));
-        
     }
 
     public function activitySearch(){
