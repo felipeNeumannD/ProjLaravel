@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EquipamentoController;
 use Illuminate\Support\Facades\Route;
 
 Use App\Http\Controllers\PessoaController;
@@ -15,6 +16,7 @@ Route::get('/user', function () {
 
 
 
+
 Route::view('/teste', 'teste');
 
 
@@ -27,6 +29,9 @@ Route::delete('/delete', [PessoaController::class, 'delete'])->name('delete');
 Route::get("/show/modify", [PessoaController::class, 'index3'])->name("modify");
 
 
+Route::get("/equip", [EquipamentoController::class,"index"])->name("index");
+Route::get("/show/equip", [EquipamentoController::class, 'index2'])->name("show equip");
+Route::post('/cadastroEquip', [EquipamentoController::class, 'store']);
 
 
 
