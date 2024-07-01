@@ -3,7 +3,7 @@
 @section('title', 'Cadastro Usuário')
 
 @section('content')
-<form action="/pessoaCad" method="POST">
+<form action="/update" method="POST">
     @csrf
     <div class="mb-3">
         <label for="nome" class="form-label">Nome:</label>
@@ -55,24 +55,26 @@
     </div>
 
     @if (isset($funcionario))
-        <div id="funcionarioFields" class="mb-3" style="display: none;">
+    <div id="funcionarioFields" class="mb-3" style="display: none;">
             <label class="form-label">Salário:</label>
-            <input type="number" class="form-control" name="salario">
+            <input type="number" class="form-control" name="salario" value="{{$funcionario->salario}}">
 
             <label class="form-label">Setor:</label>
-            <input type="text" class="form-control" name="setor">
+            <input type="text" class="form-control" name="setor" value="{{$funcionario->setor}}">
 
             <label class="form-label">Função:</label>
-            <input type="text" class="form-control" name="funcaoFuncionario">
+            <input type="text" class="form-control" name="funcaoFuncionario" value="{{$funcionario->funcao}}">
         </div>
     @endif
     
-    @if (isset($pessoa))
+    
+    
+    @if (isset($aluno))
         <div id="alunoFields" style="display: none;">
             <label class="form-label">Plano:</label>
-            <input type="text" class="form-control" name="descricao_plano">
+            <input type="text" class="form-control" name="descricao_plano" value="{{$aluno->descricao_plano}}">
             <label class="form-label">Valor:</label>
-            <input type="number" class="form-control" name="valor">
+            <input type="number" class="form-control" name="valor" value="{{$aluno->valor_plano}}">>
             <br>
             <label>Forma de Pagamento:</label>
             <input type="radio" name="forma_pagamento" value="pix"> Pix
@@ -81,6 +83,9 @@
             <input type="radio" name="forma_pagamento" value="dinheiro"> Dinheiro
         </div>
     @endif
+    <button type="submit" class="btn btn-danger">Alterar</button>
     
-    <script src="{{ asset('js/scriptUser.js') }}"></script>
+</form>
+    
+    <script src="{{asset('js/scriptUser.js')}}"></script>
 @endsection
