@@ -29,8 +29,11 @@ Route::delete('/delete', [PessoaController::class, 'delete'])->name('delete');
 Route::get("/show/modify", [PessoaController::class, 'index3'])->name("modify");
 
 
-Route::get("/equip", [EquipamentoController::class,"index"])->name("index");
-Route::get("/show/equip", [EquipamentoController::class, 'index2'])->name("show equip");
+Route::get("/equip", [EquipamentoController::class,"index"])->name("index"); //CADASTRO EQUIPAMENTOS
+Route::get("/show/equip", [EquipamentoController::class, 'index2'])->name("show"); //MODIFICA EQUIPAMENTOS
+Route::get('/search/equip/altera', [EquipamentoController::class, 'index3'])->name("altera"); //ALTERA EQUIPAMENTOS
+Route::get('/search/equip', [EquipamentoController::class,'search'])->name('search');
+Route::delete('/delete/equip', [EquipamentoController::class,'delete'])->name('delete');
 Route::post('/cadastroEquip', [EquipamentoController::class, 'store']);
 
 
