@@ -75,7 +75,7 @@
             <label class="form-label">Plano:</label>
             <input type="text" class="form-control" name="descricao_plano" value="{{$aluno->descricao_plano}}">
             <label class="form-label">Valor:</label>
-            <input type="number" class="form-control" name="valor" value="{{$aluno->valor_plano}}">>
+            <input type="number" class="form-control" name="valor" value="{{$aluno->valor_plano}}">
             <br>
             <label>Forma de Pagamento:</label>
             <input type="radio" name="forma_pagamento" value="pix"> Pix

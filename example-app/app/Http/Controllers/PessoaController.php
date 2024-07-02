@@ -35,15 +35,19 @@ class PessoaController extends Controller
             $pessoa->save();
     
             $idPessoa = $pessoa->id;
-    
-            if($request->input("funcao") == 'aluno'){
-                $aluno = new Aluno();
-                $aluno->valor_plano = $request->input('valor');
-                $aluno->descricao_plano = $request->input('descricao_plano');
-                $aluno->forma_pagamento = $request->input('forma_pagamento');
-                $aluno->id_pessoa = $idPessoa;
-                $aluno->save();
-            } else if($request->input("funcao") == 'funcionario'){
+
+            if ($request->input("funcao") == 'aluno') {
+                $aluno = Aluno::where('id_pessoa', $idPessoa)->first();
+                if($aluno){
+                    $aluno->valor_plano = $request->input('valor');
+                    $aluno->descricao_plano = $request->input('descricao_plano');
+                    $aluno->forma_pagamento = $request->input('forma_pagamento');
+                    $aluno->save();
+                }else{
+                    $this->saveAluno($idPessoa, $request);
+                }
+                
+            } else if ($request->input("funcao") == 'funcionario') {
                 $funcionario = Funcionario::where('id_pessoa', $idPessoa)->first();
                 if ($funcionario) {
                     $funcionario->data_contratacao = Carbon::today()->toDateString();
@@ -52,12 +56,11 @@ class PessoaController extends Controller
                     $funcionario->funcao = $request->input('funcaoFuncionario');
                     $funcionario->save();
                 } else {
-                    return redirect()->back()->withErrors(['funcionario' => 'Funcionário não encontrado para a pessoa fornecida']);
+                    $this->saveFuncionario($idPessoa, $request);
                 }
             }
-        } else {
-            return redirect()->back()->withErrors(['cpf' => 'Pessoa não encontrada com o CPF fornecido']);
         }
+        return redirect()->route('user'); 
     }
 
     public function index3(Request $request){
@@ -74,10 +77,6 @@ class PessoaController extends Controller
         }
 
         return view("alteraPessoa", compact('pessoa','aluno','funcionario'));
-    }
-
-    public function activitySearch(){
-
     }
 
     public function search(Request $request){
@@ -108,7 +107,26 @@ class PessoaController extends Controller
         $idPessoa = $pessoa->id;
 
         if($request->input("funcao") == 'aluno'){
-            $aluno = new Aluno();
+            $this->saveAluno($idPessoa,$request);
+        } else if($request->input("funcao") == 'funcionario'){
+            $this->saveFuncionario($idPessoa,$request);
+        }
+        return redirect()->route('user');
+    }
+
+    public function saveFuncionario($idPessoa, $request){
+        $funcionario = new Funcionario();
+        $funcionario->data_contratacao = Carbon::today()->toDateString();
+        $funcionario->salario = $request->input('salario');
+        $funcionario->setor = $request->input('setor');
+        $funcionario->funcao = $request->input('funcaoFuncionario');
+        $funcionario->id_pessoa = $idPessoa;
+
+        $funcionario->save();
+    }
+
+    public function saveAluno($idPessoa, $request){
+        $aluno = new Aluno();
             $aluno->data_inicio = Carbon::today()->toDateString();
             $aluno->valor_plano = $request->input('valor');
             $aluno->descricao_plano = $request->input('descricao_plano');
@@ -116,18 +134,5 @@ class PessoaController extends Controller
             $aluno->id_pessoa = $idPessoa;
             
             $aluno->save();
-              
-        } else if($request->input("funcao") == 'funcionario'){
-            $funcionario = new Funcionario();
-            $funcionario->data_contratacao = Carbon::today()->toDateString();
-            $funcionario->salario = $request->input('salario');
-            $funcionario->setor = $request->input('setor');
-            $funcionario->funcao = $request->input('funcaoFuncionario');
-            $funcionario->id_pessoa = $idPessoa;
-
-            $funcionario->save();
-        }
-
-
     }
 }
