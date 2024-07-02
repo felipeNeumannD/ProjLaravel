@@ -20,13 +20,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="{{route ('user')}}"><strong>Home</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pessoas</a>
+                        <a class="nav-link" href="{{route('show')}}">Pessoas</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Equipamentos</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="equipamentosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Equipamentos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="equipamentosDropdown">
+                            <li><a class="dropdown-item" href="{{ route('show/equip') }}">Listar</a></li>
+                            <li><a class="dropdown-item" href="{{ route('index') }}">Cadastrar</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
