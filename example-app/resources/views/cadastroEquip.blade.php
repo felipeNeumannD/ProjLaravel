@@ -5,7 +5,7 @@
 @section('content')
 <div class="container mt-5">
     <h1 class="mb-4">Informações do Equipamento</h1>
-    <form action="cadastroEquip" method="POST">
+    <form action="/cadastroEquip" method="POST">
         @csrf
         <div class="mb-3">
             <label for="descricao" class="form-label">Descrição:</label>

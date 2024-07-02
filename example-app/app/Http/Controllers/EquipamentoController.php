@@ -53,6 +53,8 @@ class EquipamentoController extends Controller
         $equipamento->valor = $request->input("valor");
 
         $equipamento->save();
+
+        return redirect()->route("show/equip");
     }
 
 

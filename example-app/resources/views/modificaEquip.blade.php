@@ -4,7 +4,7 @@
 
 @section('content')
 
-<form action="/search/equip" method="GET">
+<form action="search/equip" method="GET">
     <input type="search" name="procura_equipamento">
     <input type="submit" value="Pesquisar">
 

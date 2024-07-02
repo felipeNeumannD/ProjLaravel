@@ -36,3 +36,4 @@ Route::get('/search/equip/altera', [EquipamentoController::class, 'index3'])->na
 Route::get('/search/equip', [EquipamentoController::class,'search'])->name('search/equip');
 Route::delete('/delete/equip', [EquipamentoController::class,'delete'])->name('delete/equip');
 Route::post('/cadastroEquip', [EquipamentoController::class, 'store']);
+Route::put('/show/equip/update', [EquipamentoController::class,'update'])->name('update/equip');
