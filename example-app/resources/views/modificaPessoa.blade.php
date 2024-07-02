@@ -18,6 +18,7 @@
                 <th>Telefone</th>
                 <th>Email</th>
                 <th>Excluir</th>
+                <th>Alterar</th>
             </tr>
         </thead>
         <tbody>
