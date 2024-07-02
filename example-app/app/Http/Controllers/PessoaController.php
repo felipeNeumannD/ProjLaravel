@@ -20,36 +20,44 @@ class PessoaController extends Controller
     }
 
     public function update(Request $request){
-        // $pessoa = Pessoa::findOrFail($id);
-        
-        // $pessoa->nome = $request->input("nome");
-        // $pessoa->nascimento_data = $request->input("nascimento");
-        // $pessoa->sexo = $request->input("sexo");
-        // $pessoa->cpf = $request->input("cpf");
-        // $pessoa->telefone = $request->input("telefone");
-        // $pessoa->email = $request->input("email");
-        // $pessoa->save();
 
-        // if($request->input("funcao") == 'aluno'){
-        //     $aluno = new Aluno();
-        //     $aluno->data_inicio = Carbon::today()->toDateString();
-        //     $aluno->valor_plano = $request->input('valor');
-        //     $aluno->descricao_plano = $request->input('descricao_plano');
-        //     $aluno->forma_pagamento = $request->input('forma_pagamento');
-        //     $aluno->id_pessoa = $idPessoa;
-            
-        //     $aluno->save();
-              
-        // } else if($request->input("funcao") == 'funcionario'){
-        //     $funcionario = Funcionario::where('id_pessoa', $id)->first();
-        //     $funcionario->data_contratacao = Carbon::today()->toDateString();
-        //     $funcionario->salario = $request->input('salario');
-        //     $funcionario->setor = $request->input('setor');
-        //     $funcionario->funcao = $request->input('funcaoFuncionario');
-            
-        //     $funcionario->save();
-        // }
+        $cpfAchado = $request->input("cpf");
+        $pessoa = Pessoa::where('cpf', $cpfAchado)->first();
+    
+        if ($pessoa) {
 
+            $pessoa->nome = $request->input("nome");
+            $pessoa->nascimento_data = $request->input("nascimento");
+            $pessoa->sexo = $request->input("sexo");
+            $pessoa->cpf = $cpfAchado; 
+            $pessoa->telefone = $request->input("telefone");
+            $pessoa->email = $request->input("email");
+            $pessoa->save();
+    
+            $idPessoa = $pessoa->id;
+    
+            if($request->input("funcao") == 'aluno'){
+                $aluno = new Aluno();
+                $aluno->valor_plano = $request->input('valor');
+                $aluno->descricao_plano = $request->input('descricao_plano');
+                $aluno->forma_pagamento = $request->input('forma_pagamento');
+                $aluno->id_pessoa = $idPessoa;
+                $aluno->save();
+            } else if($request->input("funcao") == 'funcionario'){
+                $funcionario = Funcionario::where('id_pessoa', $idPessoa)->first();
+                if ($funcionario) {
+                    $funcionario->data_contratacao = Carbon::today()->toDateString();
+                    $funcionario->salario = $request->input('salario');
+                    $funcionario->setor = $request->input('setor');
+                    $funcionario->funcao = $request->input('funcaoFuncionario');
+                    $funcionario->save();
+                } else {
+                    return redirect()->back()->withErrors(['funcionario' => 'Funcionário não encontrado para a pessoa fornecida']);
+                }
+            }
+        } else {
+            return redirect()->back()->withErrors(['cpf' => 'Pessoa não encontrada com o CPF fornecido']);
+        }
     }
 
     public function index3(Request $request){

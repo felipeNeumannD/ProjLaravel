@@ -3,8 +3,9 @@
 @section('title', 'Cadastro Usuário')
 
 @section('content')
-<form action="/update" method="POST">
+<form action="{{ route('update') }}" method="POST">
     @csrf
+    @method('PUT')
     <div class="mb-3">
         <label for="nome" class="form-label">Nome:</label>
         <input type="text" class="form-control" id="nome" name="nome" value="{{$pessoa->nome}}">
