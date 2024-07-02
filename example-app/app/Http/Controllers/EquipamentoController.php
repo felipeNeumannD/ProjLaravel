@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Equipamento;
+use Carbon\Carbon;
 
 class EquipamentoController extends Controller
 {
@@ -24,10 +25,34 @@ class EquipamentoController extends Controller
     {
         $id = $request->input('idModificar');
         $equipamento = Equipamento::findOrFail($id);
-        $equipamento = Equipamento::where('id_equipamento','%'.$id.'%')->get();
+        $equipamento = Equipamento::where('id_equipamento','%'.$id.'%')->first();
 
-        return view('alteraEquip', compact('equipamento'));
+        if(!$equipamento)
+        {
+            $equipamento = new Equipamento();
+        }
+        
+        return view("alteraEquip", compact('equipamento'));
 
+    }
+
+
+    public function update(Request $request) 
+    {
+        $idSolicitacao = $request->input("id");
+
+        $equipamento = Equipamento::where('id', $idSolicitacao)->first();
+
+        if($equipamento)
+        {
+            $equipamento->descricao = $request->input('descricao');
+            $equipamento->tipo = $request->input('tipo');
+            $equipamento->data_compra = $request->input('data_compra');
+            $equipamento->valor = $request->input('valor');
+            $equipamento->save();
+
+            return redirect()->route('show/equip');
+        }
     }
 
     public function search(Request $request)
@@ -54,7 +79,7 @@ class EquipamentoController extends Controller
 
         $equipamento->save();
 
-        return redirect()->route("show/equip");
+        return redirect()->route('show/equip');
     }
 
 

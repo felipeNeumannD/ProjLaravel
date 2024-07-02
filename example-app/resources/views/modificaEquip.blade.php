@@ -4,7 +4,7 @@
 
 @section('content')
 
-<form action="search/equip" method="GET">
+<form action="{{ route('search/equip') }}" method="GET">
     <input type="search" name="procura_equipamento">
     <input type="submit" value="Pesquisar">
 
@@ -36,7 +36,7 @@
                         </form>
                     </td>
                     <td class="text-center">
-                        <form action="/show/equip/altera" method="GET">
+                        <form action="equip/altera" method="GET">
                             <input type="hidden" name="idModificar" value="{{$equipamento->id}}">
                             <button type="submit" class="btn btn-danger">Alterar</button>
                         </form>
